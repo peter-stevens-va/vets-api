@@ -28,5 +28,10 @@ module AccreditedRepresentativePortal
     initializer 'model_core.factories', after: 'factory_bot.set_factory_paths' do
       FactoryBot.definition_file_paths << File.expand_path('../../spec/factories', __dir__) if defined?(FactoryBot)
     end
+
+    initializer 'accredited_representative_portal.default_url_options' do |_app|
+      engine_host = ENV.fetch('ARP_HOST', 'http://localhost:3000')
+      AccreditedRepresentativePortal::Engine.routes.default_url_options[:host] = engine_host
+    end
   end
 end
