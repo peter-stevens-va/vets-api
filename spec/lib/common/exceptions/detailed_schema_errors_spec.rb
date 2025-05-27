@@ -56,7 +56,7 @@ describe Common::Exceptions::DetailedSchemaErrors do
 
     it { expect(pointer).to eq '/' }
     it { expect(subject[:title]).to eq 'Missing required fields' }
-    it { expect(subject[:meta][:missing_fields]).to match_array %w[requiredField age] }
+    it { expect(subject[:meta][:missingFields]).to match_array %w[requiredField age] }
   end
 
   context 'data types' do
@@ -236,7 +236,7 @@ describe Common::Exceptions::DetailedSchemaErrors do
       data['hungry?'] = true
       expect(subject[:title]).to eq 'Missing required fields'
       expect(subject[:detail]).to eq 'One or more expected fields were not found'
-      expect(subject[:meta][:missing_fields]).to eq ['dessert']
+      expect(subject[:meta][:missingFields]).to eq ['dessert']
     end
   end
 
